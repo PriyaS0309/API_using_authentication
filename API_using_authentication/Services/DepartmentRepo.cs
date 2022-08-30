@@ -13,6 +13,7 @@ namespace API_using_authentication.Services
         public DepartmentRepo(DepartmentDbContext departmentDbContext)
         {
             this.departmentDbContext = departmentDbContext;
+         
         }
         public async Task<Department> CreateDepartment(Department department)
         {
@@ -52,6 +53,8 @@ namespace API_using_authentication.Services
         {
             return await departmentDbContext.Departments.FirstOrDefaultAsync(model => model.DepartmentID==id);
         }
+
+      
 
         public async Task<Department> GetDepartmentByName(string name)
         {

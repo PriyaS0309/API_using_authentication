@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,6 +61,16 @@ namespace API_using_authentication
 
               );
 
+            services.AddSwaggerGen(c=>                                                    //adding swagger
+            {
+                c.SwaggerDoc("v5", new OpenApiInfo
+                { 
+                   Title="API CRUD",
+                   Version="5.6",
+                   Description="REST API CRUD"
+                });
+            }
+            );
 
             services.AddScoped<IDepartmentRepo, DepartmentRepo>();
             services.AddScoped<IEmployeeRepo, EmployeeRepo>();
@@ -87,6 +98,12 @@ namespace API_using_authentication
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();                                           //adding swagger in app
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v5/swagger.json", "5.6");
             });
         }
     }

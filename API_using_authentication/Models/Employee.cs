@@ -15,6 +15,8 @@ namespace API_using_authentication
         public string EmployeeName { get; set; }
         public string Email { get; set; }
 
+      //  public bool IsActive { get; set; }
+
         public int DepartmentID { get; set; }
         [ForeignKey("DepartmentID")]
 
